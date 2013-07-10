@@ -41,8 +41,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstream.version>2.2.0</upstream.version>
+        <upstream.version>2.2.1</upstream.version>
         <upstream.url>http://cdn.sencha.io/touch/</upstream.url>
+        <upstream.directory>touch-2.2.1</upstream.directory>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstream.version}</destDir>
     </properties>
 
@@ -76,11 +77,19 @@
                         <configuration>
                             <target>
                                 <echo message="unzip archive and file files" />
-                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}" />
-                                <echo message="moving resources" />
-                                <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/touch-${upstream.version}/builds" />
-                                </move>
+                                <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${destDir}">
+                                    <patternset>
+                                        <exclude name="${upstream.directory}/docs/**" />
+                                        <exclude name="${upstream.directory}/examples/**" />
+                                        <exclude name="${upstream.directory}/microloader/**" />
+                                    </patternset>
+                                    <mapper>
+                                        <!-- Strip leading directory off each path -->
+                                        <!-- So "xxx/docs/index.html" becomes "docs/index.html" -->
+                                        <cutdirsmapper dirs="1" />
+                                    </mapper>
+                                </unzip>
+                                <echo message="unzip done" />
                             </target>
                         </configuration>
                     </execution>
