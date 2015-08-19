@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>senchatouch</artifactId>
-    <version>2.4.2-SNAPSHOT</version>
+    <version>2.4.2</version>
     <name>Sencha Touch</name>
     <description>WebJar for Sencha Touch</description>
     <url>http://webjars.org</url>
@@ -28,7 +28,7 @@
         <url>http://github.com/webjars/senchatouch</url>
         <connection>scm:git:https://github.com/webjars/senchatouch.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/senchatouch.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>senchatouch-2.4.2</tag>
     </scm>
 
     <developers>
@@ -76,20 +76,20 @@
                         <goals><goal>run</goal></goals>
                         <configuration>
                             <target>
-                                <echo message="unzip archive and file files"/>
+                                <echo message="unzip archive and file files" />
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${destDir}">
                                     <patternset>
-                                        <exclude name="${upstream.directory}/docs/**"/>
-                                        <exclude name="${upstream.directory}/examples/**"/>
-                                        <exclude name="${upstream.directory}/microloader/**"/>
+                                        <exclude name="${upstream.directory}/docs/**" />
+                                        <exclude name="${upstream.directory}/examples/**" />
+                                        <exclude name="${upstream.directory}/microloader/**" />
                                     </patternset>
                                     <mapper>
                                         <!-- Strip leading directory off each path -->
                                         <!-- So "xxx/docs/index.html" becomes "docs/index.html" -->
-                                        <cutdirsmapper dirs="1"/>
+                                        <cutdirsmapper dirs="1" />
                                     </mapper>
                                 </unzip>
-                                <echo message="unzip done"/>
+                                <echo message="unzip done" />
                             </target>
                         </configuration>
                     </execution>
